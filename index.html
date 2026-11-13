@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rushikesh Gaiwal - Developer Profile</title>
+  
+  <!-- React 18 CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #1a1a2e;
+      min-height: 100vh;
+      color: #f0f0f5;
+      overflow-x: hidden;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* Glassmorphism card */
+    .profile-card {
+      background: rgba(26, 32, 44, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      border-radius: 24px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.3s ease;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .profile-card:hover {
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Avatar container */
+    .avatar-container {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 1.5rem;
+      position: relative;
+    }
+
+    /* Circular profile picture */
+    .profile-avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(168, 85, 247, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .profile-avatar:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
+    }
+
+    /* Avatar glow */
+    .avatar-glow {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 2px solid rgba(168, 85, 247, 0.3);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .profile-card:hover .avatar-glow {
+      opacity: 0.5;
+    }
+
+    /* Profile info */
+    .profile-info {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-name {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .profile-role {
+      font-size: 1rem;
+      color: #71719a;
+      margin-bottom: 1rem;
+    }
+
+    .profile-bio {
+      font-size: 0.9rem;
+      color: #71719a;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Skills section */
+    .skills-section {
+      margin-top: 1rem;
+    }
+
+    .skills-tag {
+      display: inline-block;
+      background: rgba(168, 85, 247, 0.15);
+      color: #a855f7;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin: 0.2rem;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+
+    /* Like button */
+    .like-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s ease;
+      margin-top: 0.5rem;
+    }
+
+    .like-btn:hover {
+      color: #a855f7;
+    }
+
+    .like-btn:focus {
+      outline: 2px solid #a855f7;
+      outline-offset: 2px;
+    }
+
+    /* Like animation */
+    .like-animate {
+      animation: likePulse 0.3s ease;
+    }
+
+    @keyframes likePulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    /* Like counter */
+    .like-counter {
+      font-size: 1rem;
+      margin-left: 0.5rem;
+      color: #71719a;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .profile-card {
+        padding: 1.5rem;
+      }
+
+      .avatar-container {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 1rem;
+      }
+
+      .profile-name {
+        font-size: 1.3rem;
+      }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .profile-avatar,
+      .like-animate {
+        transition: none;
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="min-h-screen p-4 flex items-center justify-center">
+    <div class="w-full max-w-md">
+      <ProfileCard
+        name="Rushikesh Gaiwal"
+        role="Blockchain & Web3 Developer"
+        bio="Passionate developer interested in Blockchain, Web3 technologies, smart contracts, and modern web development. I enjoy building practical projects and exploring emerging technologies."
+        skills={['React', 'JavaScript', 'Solidity', 'HTML', 'CSS', 'Blockchain']}
+        avatar="https://ui-avatars.com/api/?name=Rushikesh+Gaiwal&color=fff&background=1b1b3b"
+      />
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    // ProfileCard component using React.createElement
+    // Demonstrates React 18 fundamentals: functional components, props, useState
+    // The like counter uses useState and works correctly because we render once outside
+    
+    function ProfileCard(props) {
+      // Destructure props received by the component
+      const { name, role, bio, skills, avatar } = props;
+      
+      // useState hook for managing like count state
+      // This state persists across re-renders because the component 
+      // is only rendered once by the outer ReactDOM.render call
+      const [likeCount, setLikeCount] = React.useState(0);
+      // useState hook for managing like animation state
+      const [liked, setLiked] = React.useState(false);
+      
+      // Like click handler - updates like count state
+      const handleLikeClick = () => {
+        setLikeCount(prev => prev + 1);
+        setLiked(true);
+        // Reset the like animation after it completes
+        setTimeout(() => setLiked(false), 300);
+      };
+      
+      // Compute derived styles based on theme state
+      const cardBg = 'rgba(26, 32, 44, 0.8)';
+      const avatarBorder = 'rgba(168, 85, 247, 0.5)';
+      const tagBg = 'rgba(168, 85, 247, 0.15)';
+      const tagColor = '#a855f7';
+      const btnBg = 'rgba(255, 255, 255, 0.05)';
+      
+      // Create skill tags using React.createElement
+      // Correct syntax: React.createElement(type, props, children)
+      const skillElements = skills.map((skill, index) =>
+        React.createElement('span', {
+          key: index,
+          className: 'skills-tag',
+          style: { background: tagBg, color: tagColor }
+        }, skill)
+      );
+      
+      // Create avatar element using React.createElement
+      const avatarElement = React.createElement('img', {
+        className: 'profile-avatar',
+        src: avatar,
+        alt: `${name}'s profile picture`,
+        style: { borderColor: avatarBorder }
+      });
+      
+      // Create avatar glow using React.createElement
+      const glowElement = React.createElement('div', {
+        className: 'avatar-glow'
+      });
+      
+      // Create avatar picture container
+      const avatarContainer = React.createElement('div', {
+        className: 'avatar-container'
+      }, avatarElement, glowElement);
+      
+      // Create profile name element
+      const nameElement = React.createElement('h2', {
+        className: 'profile-name'
+      }, name);
+      
+      // Create profile role element
+      const roleElement = React.createElement('p', {
+        className: 'profile-role'
+      }, role);
+      
+      // Create profile bio element
+      const bioElement = React.createElement('p', {
+        className: 'profile-bio'
+      }, bio);
+      
+      // Create profile info section
+      const profileInfo = React.createElement('div', {
+        className: 'profile-info'
+      }, nameElement, roleElement, bioElement);
+      
+      // Create skills section
+      const skillsSection = React.createElement('div', {
+        className: 'skills-section'
+      }, skillElements);
+      
+      // Create like button using React.createElement
+      // Correct syntax: React.createElement(type, props, children)
+      const likeButton = React.createElement('button', {
+        className: `like-btn ${liked ? 'like-animate' : ''}`,
+        onClick: handleLikeClick,
+        style: {
+          background: btnBg,
+          border: 'none',
+          color: '#1a1a1a'
+        },
+        ariaLabel: 'Like this profile'
+      }, [
+        React.createElement('svg', {
+          xmlns: 'http://www.w3.org/2000/svg',
+          className: 'h-4 w-4',
+          fill: liked ? '#a855f7' : 'currentColor',
+          viewBox: '0 0 24 24'
+        }, React.createElement('path', {
+          strokeLineCap: 'round',
+          strokeLineJoin: 'round',
+          strokeWidth: 2,
+          d: 'M5 3v5h5M3 12h5v5H3M5 21h5v-5H5M12 12a8 8 0 100-16 8 8 0 000 16z'
+        })),
+        React.createElement('span', { className: 'like-counter' }, likeCount)
+      ]);
+      
+      // Create profile card using React.createElement
+      const profileCard = React.createElement('div', {
+        className: 'profile-card glass-overlay',
+        style: { background: cardBg }
+      }, avatarContainer, profileInfo, skillsSection, likeButton);
+      
+      // Return the profile card element
+      // The parent will render this via ReactDOM.render
+      return profileCard;
+    }
+    
+    // Profile data - kept separate from the component
+    const profileData = {
+      name: "Rushikesh Gaiwal",
+      role: "Blockchain & Web3 Developer",
+      bio: "Passionate developer interested in Blockchain, Web3 technologies, smart contracts, and modern web development. I enjoy building practical projects and exploring emerging technologies.",
+      skills: ['React', 'JavaScript', 'Solidity', 'HTML', 'CSS', 'Blockchain'],
+      avatar: "https://ui-avatars.com/api/?name=Rushikesh+Gaiwal&color=fff&background=1b1b3b"
+    };
+    
+    // Single render call outside the component
+    // This is the key: ReactDOM.render is called ONCE, not inside the component
+    // This ensures useState retains its value between clicks
+    const profileCardElement = React.createElement(ProfileCard, {
+      name: profileData.name,
+      role: profileData.role,
+      bio: profileData.bio,
+      skills: profileData.skills,
+      avatar: profileData.avatar
+    });
+    
+    // Render to DOM - called once here, not inside the component
+    ReactDOM.render(profileCardElement, document.body);
+  </script>
+</body>
+</html>
